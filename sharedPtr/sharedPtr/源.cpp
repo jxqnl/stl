@@ -21,6 +21,38 @@ void pdf()
 	cout << "p2:" << p2.get() << endl;
 }
 
+class B;
+class A
+{
+public:
+	//shared_ptr<B> pb;
+	weak_ptr<B> pb;
+	~A()
+	{
+		cout << "A Delete\n" << endl;
+	}
+};
+
+class B
+{
+public:
+	shared_ptr<A> pa;
+	~B()
+	{
+		cout << "B Delete\n" << endl;
+	}
+};
+
+void fun()
+{
+	shared_ptr<B> _pb(new B);
+	shared_ptr<A> _pa(new A);
+	_pb->pa = _pa;
+	_pa->pb = _pb;
+	cout << "pb use_count:" << _pb.use_count() << endl;
+	cout << "pa use_count:" << _pa.use_count() << endl;
+}
+
 int main(int argc, char** argv)
 {
 	////double* p_reg = new double;
@@ -42,6 +74,7 @@ int main(int argc, char** argv)
 	cout << "pinv2:" << *pInv2.get() << endl;
 	//cout << "pInv1:" << *pInv1.get() << endl;
 	pdf();
+	fun();
 	system("pause");
 	return 0;
 }
