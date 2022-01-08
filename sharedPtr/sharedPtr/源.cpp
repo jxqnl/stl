@@ -53,6 +53,11 @@ void fun()
 	cout << "pa use_count:" << _pa.use_count() << endl;
 }
 
+unique_ptr<int> Clone(int p)
+{
+	return unique_ptr<int>(new int(p));
+}
+
 int main(int argc, char** argv)
 {
 	////double* p_reg = new double;
@@ -75,6 +80,25 @@ int main(int argc, char** argv)
 	//cout << "pInv1:" << *pInv1.get() << endl;
 	pdf();
 	fun();
+
+	unique_ptr<string> p1(new string("stego"));
+	//unique_ptr<string> p2(p1);
+	//unique_ptr<string> p3;
+	//p3 = p1;
+	unique_ptr<string> p2(p1.release());
+	cout << "p2:" << *p2 << endl;
+	//cout << "p1:" << *p1 << endl;
+
+	unique_ptr<string> p3(new string("Trix"));
+	p2.reset(p3.release());
+	cout << "now p2:" << *p2.get() << endl;
+
+	unique_ptr<int> pi;
+		pi = Clone(5);
+	cout << "pi:" << *pi << endl;
+
+	unique_ptr<string> pu;
+	pu = unique_ptr<string>(new string("you"));
 	system("pause");
 	return 0;
 }
