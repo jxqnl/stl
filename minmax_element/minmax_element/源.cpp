@@ -4,6 +4,15 @@
 
 using namespace std;
 
+//default (1)
+//template <class ForwardIterator>
+//pair<ForwardIterator, ForwardIterator>
+//minmax_element(ForwardIterator first, ForwardIterator last);
+//custom(2)
+//template <class ForwardIterator, class Compare>
+//pair<ForwardIterator, ForwardIterator>
+//minmax_element(ForwardIterator first, ForwardIterator last, Compare comp);
+
 int main(int argc, char**argv)
 {
 	std::array<int, 7> foo{3,7,2,9,5,8,6};
