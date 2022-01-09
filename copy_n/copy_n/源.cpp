@@ -3,9 +3,9 @@
 #include <vector>
 
 using namespace std;
-
 //template <class InputIterator, class Size, class OutputIterator>
 //OutputIterator copy_n(InputIterator first, Size n, OutputIterator result);
+//3387
 
 int main(int argc, char**argv)
 {
