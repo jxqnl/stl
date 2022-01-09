@@ -6,6 +6,9 @@ using namespace std;
 //template <class ForwardIterator, class UnaryPredicate>
 //ForwardIterator remove_if(ForwardIterator first, ForwardIterator last,
 //	UnaryPredicate pred);
+
+
+//tuple,tie,vector<T>::assign
 bool isOdd(int i)
 {
 	return i % 2 == 1;
