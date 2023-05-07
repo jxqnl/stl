@@ -4,6 +4,11 @@
 #include <string>
 #include <algorithm>
 #include <iterator>
+#include <fstream>
+#include <istream>
+
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 int main(int argc, char** argv)
 {
@@ -72,5 +77,17 @@ int main(int argc, char** argv)
 	});
 	cout << std::endl;
 
+	ifstream input_file("C:\\Git\\stl\\effective stl\\all_iterator\\x64\\Debug\\test.txt");
+	std::string file_data(istreambuf_iterator<char>(input_file), istreambuf_iterator<char>());
+
+	std::istreambuf_iterator<char> eos;                    // end-of-range iterator
+	std::istreambuf_iterator<char> iit(std::cin.rdbuf()); // stdin iterator
+	std::string mystring;
+
+	std::cout << "Please, enter your name: ";
+
+	while(iit != eos && *iit != '\n') mystring += *iit++;
+
+	std::cout << "Your name is " << mystring << ".\n";
 	system("pause");
 }
