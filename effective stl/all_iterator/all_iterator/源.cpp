@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <iterator>
 using namespace std;
 int main(int argc, char** argv)
 {
@@ -47,5 +48,29 @@ int main(int argc, char** argv)
 	advance(d_iter,distance<const_int_iter>(d_iter, d_const_iter));
 
 	std::cout << *--d_iter << std::endl;
+
+	vector<int> v;
+	v.reserve(5);
+	for(int i = 1; i <= 5; ++i)
+		v.emplace_back(i);
+	vector<int>::reverse_iterator ri = find(v.rbegin(), v.rend(), 3);
+	std::cout << "ri:"<<*ri << std::endl;
+	vector<int>::iterator fi(ri.base());
+	std::cout << "i:" << *fi << std::endl;
+
+	v.insert(fi, 99);
+	std::for_each(v.begin(), v.end(), [=](int c) {
+		std::cout << " " << c;
+	});
+	cout<<std::endl;
+
+	vector<int>::reverse_iterator ri2 = find(v.rbegin(), v.rend(), 3);
+	//v.erase(--ri2.base());
+	v.erase((++ri2).base());
+	std::for_each(v.begin(), v.end(), [=](int c) {
+		std::cout << " " << c;
+	});
+	cout << std::endl;
+
 	system("pause");
 }
